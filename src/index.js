@@ -7,6 +7,12 @@ import routes from './routes';
 const app = express();
 
 // middleware
+// parse application/json
+app.use(
+  express.json({
+    limit: config.bodyLimit,
+  })
+);
 
 // passport config
 

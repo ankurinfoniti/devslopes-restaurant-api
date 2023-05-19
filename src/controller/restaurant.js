@@ -14,5 +14,18 @@ export default ({ config, db }) => {
     res.status(201).json({ message: 'Restaurant saved successfully' });
   });
 
+  // '/v1/restaurant'
+  api.get('/', async (req, res) => {
+    const restaurants = await Restaurant.find({});
+    res.json(restaurants);
+  });
+
+  // '/v1/restaurant/:id'
+  api.get('/:id', async (req, res) => {
+    const id = req.params.id;
+    const restaurant = await Restaurant.findById(id);
+    res.json(restaurant);
+  });
+
   return api;
 };

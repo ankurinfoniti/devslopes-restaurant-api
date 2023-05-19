@@ -27,5 +27,17 @@ export default ({ config, db }) => {
     res.json(restaurant);
   });
 
+  // '/v1/restaurant/:id'
+  api.put('/:id', async (req, res) => {
+    const filter = { _id: req.params.id };
+    const update = { name: req.body.name };
+
+    const doc = await Restaurant.findOneAndUpdate(filter, update, {
+      new: true,
+    });
+
+    res.json({ message: 'Restaurant info updated' });
+  });
+
   return api;
 };

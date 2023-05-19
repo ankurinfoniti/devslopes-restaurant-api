@@ -39,5 +39,11 @@ export default ({ config, db }) => {
     res.json({ message: 'Restaurant info updated' });
   });
 
+  // '/v1/restaurant/:id'
+  api.delete('/:id', async (req, res) => {
+    await Restaurant.deleteOne({ _id: req.params.id });
+    res.json({ message: 'Restaurant successfully removed' });
+  });
+
   return api;
 };
